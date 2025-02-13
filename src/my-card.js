@@ -69,8 +69,18 @@ export class MyCard extends LitElement {
         margin-left: auto;
         margin-right: auto;
       }
-
     `;
+  }
+
+  // put this anywhere on the MyCard class; just above render() is probably good
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
   }
 
   render() {
@@ -78,7 +88,13 @@ export class MyCard extends LitElement {
     <div class="card">
       <h1>${this.title}</h1>
       <img src="${this.img}"></img>
-      <p>${this.description}</p>
+      <!-- put this in your render method where you had details -->
+      <details id='5' ?open="${this.fancy}" @toggle="${this.openChanged}">
+        <summary>Description</summary>
+        <div>
+          <slot>${this.description}</slot>
+        </div>
+      </details>
       <button class="card-button"><a href="${this.link}">Click Me</a></button>
     </div> 
     `;
