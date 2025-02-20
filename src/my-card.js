@@ -25,18 +25,13 @@ export class MyCard extends LitElement {
       :host {
         display: block;
       }
-      .cardlist {
-        display: flex;
-        width: 1200px;
-      }
-
       .card {
         background-color: black;
         display: block;
+        width: 400px;
+        height: auto;
         padding: 8px;
         margin: 8px;
-        width: 400px;
-        height: 400px;
         border-radius: 20px;
       }
       .hax {
@@ -51,9 +46,9 @@ export class MyCard extends LitElement {
         text-align: center;
       }
       img {
-        width: 300px;
-        height: 200px;
         display: block;
+        width: 300px;
+        aspect-ratio: 16 / 9 auto;
         margin-left: auto;
         margin-right: auto;
       }
@@ -68,6 +63,26 @@ export class MyCard extends LitElement {
         display: block;
         margin-left: auto;
         margin-right: auto;
+      }
+      details summary {
+        color: white;
+        text-align: left;
+        font-size: 20px;
+        padding: 8px 0;
+      }
+
+      details[open] summary {
+        font-weight: bold;
+        color: white;
+      }
+    
+      details div {
+        border: 2px solid black;
+        text-align: left;
+        padding: 8px;
+        height: 70px;
+        overflow: auto;
+        color: white;
       }
     `;
   }
@@ -92,7 +107,7 @@ export class MyCard extends LitElement {
       <details id='5' ?open="${this.fancy}" @toggle="${this.openChanged}">
         <summary>Description</summary>
         <div>
-          <slot>${this.description}</slot>
+          <span class="desc"><slot>${this.description}</slot></span>
         </div>
       </details>
       <button class="card-button"><a href="${this.link}">Click Me</a></button>
