@@ -84,6 +84,11 @@ export class MyCard extends LitElement {
         overflow: auto;
         color: white;
       }
+      .desc {
+        color: white;
+        text-align: left;
+        font-size: 20px;
+      }
     `;
   }
 
@@ -107,7 +112,7 @@ export class MyCard extends LitElement {
       <details id='5' ?open="${this.fancy}" @toggle="${this.openChanged}">
         <summary>Description</summary>
         <div>
-          <span class="desc"><slot>${this.description}</slot></span>
+          ${this.description}
         </div>
       </details>
       <button class="card-button"><a href="${this.link}">Click Me</a></button>
